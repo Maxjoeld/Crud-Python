@@ -36,7 +36,7 @@ class Comment(models.Model):
   def approve(self):
     self.approved_comment = True
     self.save()
-
+  # django actually looks for this reserved method 
   def get_absoluter_url(self):
     return reverse('post_list')
 
