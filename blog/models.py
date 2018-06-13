@@ -5,7 +5,7 @@ from django.urls import reverse
 # Create your models here.
 
 class Post(models.Model):
-  author = models.ForeignKey('auth.User')
+  author = models.ForeignKey('auth.User', on_delete=models.PROTECT)
   title = models.CharField(max_length=200)
   text = models.TextField()
   create_date = models.DateTimeField(default=timezone.now())
@@ -25,8 +25,8 @@ class Post(models.Model):
   def __str__(self):
     return self.title
 
-class Comment(model.Model):
-  post = models.ForeignKey('blog.Post', related_name='comments')
+class Comment(models.Model):
+  post = models.ForeignKey('blog.Post',on_delete=models.PROTECT, related_name='comments')
   author = models.CharField(max_length=200)
   text = models.TextField()
   create_date = models.DateTimeField(default=timezone.now())
